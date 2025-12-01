@@ -20,10 +20,12 @@
       in
       {
         packages.default = list-generations;
+        packages.list-generations = list-generations;
       }
     )
     # ==== Modules ====
     // {
       modules.rollback = ./rollback.nix;
+      modules.containers = ./containers.nix;
     };
 }
