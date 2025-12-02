@@ -8,6 +8,8 @@
 let
   cfg = config.system.updateContainers;
 
+  list-containers = (pkgs.writers.writeNuBin "list-containers" ./nu/list-containers.nu);
+
   update-containers = (
     pkgs.writers.writeNuBin "update-containers" (
       pkgs.replaceVars ./nu/update-containers.nu {
@@ -35,6 +37,7 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [
+      list-containers
       update-containers
     ];
 

@@ -17,10 +17,12 @@
       let
         pkgs = import nixpkgs { inherit system; };
         list-generations = (pkgs.writers.writeNuBin "list-generations" ./nu/list-generations.nu);
+        list-containers = (pkgs.writers.writeNuBin "list-containers" ./nu/list-containers.nu);
       in
       {
         packages.default = list-generations;
         packages.list-generations = list-generations;
+        packages.list-containers = list-containers;
       }
     )
     # ==== Modules ====
