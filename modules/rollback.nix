@@ -27,7 +27,7 @@ let
     ln -snfv "$(readlink "$gen")" "${profiles}/system-good"
   '';
 
-  list-generations = (pkgs.writers.writeNuBin "list-generations" ./nu/list-generations.nu);
+  list-generations = (pkgs.writers.writeNuBin "list-generations" ../nu/list-generations.nu);
 in
 {
   options.system.autoRollback = {

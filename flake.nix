@@ -27,7 +27,8 @@
     )
     # ==== Modules ====
     // {
-      modules.rollback = ./rollback.nix;
-      modules.containers = ./containers.nix;
+      nixosModules.containers = ./modules/containers.nix;
+      nixosModules.notifications = ./modules/notifications.nix;
+      nixosModules.rollback = ./modules/rollback.nix;
     };
 }

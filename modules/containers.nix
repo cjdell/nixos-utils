@@ -8,11 +8,11 @@
 let
   cfg = config.system.updateContainers;
 
-  list-containers = (pkgs.writers.writeNuBin "list-containers" ./nu/list-containers.nu);
+  list-containers = (pkgs.writers.writeNuBin "list-containers" ../nu/list-containers.nu);
 
   update-containers = (
     pkgs.writers.writeNuBin "update-containers" (
-      pkgs.replaceVars ./nu/update-containers.nu {
+      pkgs.replaceVars ../nu/update-containers.nu {
         PODMAN = lib.getExe pkgs.podman;
         SYSTEMCTL = "${pkgs.systemd}/bin/systemctl";
         CURL = lib.getExe pkgs.curl;
@@ -23,12 +23,12 @@ let
 in
 {
   options.system.updateContainers = {
-    enable = lib.mkEnableOption "automatic update of containers";
+    enable = lib.mkEnableOption "Automatic update of containers";
 
     webhookUrl = lib.mkOption {
       type = lib.types.str;
       default = "";
-      example = "https://hooks.slack.com/services/blah/blah/blah";
+      example = "http://127.0.0.1:8888";
       description = ''
         URL for webhook explaining what has been updated
       '';

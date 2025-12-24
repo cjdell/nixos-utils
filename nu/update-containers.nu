@@ -7,7 +7,7 @@
 # let PODMAN = "podman"
 # let SYSTEMCTL = "systemctl"
 # let CURL = "curl"
-# let WEBHOOK_URL = "https://hooks.slack.com/services/blah/blah/blah"
+# let WEBHOOK_URL = "http://127.0.0.1:8888"
 
 let PODMAN = "@PODMAN@"
 let SYSTEMCTL = "@SYSTEMCTL@"
@@ -20,7 +20,7 @@ mut notification_list: list<string> = []
 
 for container in $containers {
     let old_digest = get_digest $container.Image
-    
+
     print $"(ansi bo)Updating ($container.Image) - ($old_digest)(ansi reset)"
 
     ^$PODMAN pull $container.Image # err> /dev/null
@@ -43,7 +43,7 @@ for container in $containers {
 print $notification_list
 
 if ((($notification_list | length) > 0) and (($WEBHOOK_URL | str length) > 0)) {
-    let data = { text: ($notification_list | str join "\n") } | to json
+    let data = { title: "Updated Containers", message: ($notification_list | str join "\n") } | to json
 
     ^$CURL -X POST -H 'Content-type: application/json' --data $data $WEBHOOK_URL
 }
