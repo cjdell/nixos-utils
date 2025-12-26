@@ -6,7 +6,7 @@ A collection of NixOS modules that I use in my home lab.
 
 ### Container Updates
 
-Automatically upgrade containers on interval
+Automatically perform nightly upgrades of containers to the latest image assigned to the pinned tagged.
 
 #### Tools
 
@@ -26,6 +26,8 @@ modules = [
 ```
 
 #### Configuration
+
+This will run every night at 2am and will a send a notification describing what has been upgraded (if any).
 
 ```nix
 system.updateContainers = {
@@ -77,6 +79,8 @@ modules = [
 
 #### Configuration
 
+An example for using Home Assistant push notifications. Change to your API endpoint. You'll need to find the device name in the Developer Tools and replace `mobile_app_hd1913`.
+
 ```nix
 notifications.gateway = {
   enable = true;
@@ -87,6 +91,8 @@ notifications.gateway = {
   headerFile = "${pkgs.writeText "header-file" "Authorization: Bearer eyJ...hKs"}"; 
 };
 ```
+
+Test with:
 
 ```bash
 curl -X POST http://localhost:8888 -H 'Content-Type: application/json' -d '{"message":"Hello World!","title":"Notification Test"}'

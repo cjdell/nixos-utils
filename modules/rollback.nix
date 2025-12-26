@@ -8,7 +8,7 @@
 let
   cfg = config.system.autoRollback;
 
-  currentSystem = "/run/current-system/sw/bin";
+  currentSystem = "/run/current-system";
   profiles = "/nix/var/nix/profiles";
 
   nixos-confirm = pkgs.writers.writeDashBin "nixos-confirm" ''
@@ -20,7 +20,7 @@ let
       gen=/run/current-system
     fi
 
-    /run/current-system/sw/bin/systemctl stop auto-rollback.service auto-rollback.timer
+    ${currentSystem}/sw/bin/systemctl stop auto-rollback.service auto-rollback.timer
 
     echo "Confirming generation $gen as good"
 
@@ -53,7 +53,7 @@ in
     systemd.services.auto-rollback = {
       unitConfig.X-RestartIfChanged = false;
       script = ''
-        current=/run/current-system
+        current=${currentSystem}
         good=${profiles}/system-good
 
         if ! test -L "$good"; then
