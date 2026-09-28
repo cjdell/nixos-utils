@@ -10,7 +10,7 @@
 # - `cargo build --target wasm32-unknown-unknown` (nixpkgs rustc ships the
 #   wasm32 std; `lld` provides the `wasm-ld` linker)
 # - `wasm-bindgen --target web` turns the .wasm into a loadable ES module.
-#   The CLI in nixpkgs is 0.2.121, so Cargo.toml pins wasm-bindgen/js-sys/
+#   The CLI in nixpkgs is 0.2.127, so Cargo.toml pins wasm-bindgen/js-sys/
 #   web-sys/wasm-bindgen-futures to the matching schema versions.
 # - `wasm-opt` shrinks the binary (needs bulk-memory + nontrapping-fptoint
 #   flags, which dioxus/rust emit these days).

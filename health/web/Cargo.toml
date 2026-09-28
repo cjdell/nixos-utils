@@ -9,7 +9,7 @@ gloo-net = "0.6"
 gloo-timers = { version = "0.3", features = ["futures"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-web-sys = { version = "=0.3.98", features = [
+web-sys = { version = "=0.3.104", features = [
   "CanvasGradient",
   "CanvasRenderingContext2d",
   "HtmlCanvasElement",
@@ -20,11 +20,11 @@ web-sys = { version = "=0.3.98", features = [
   "TextMetrics",
 ] }
 
-# Pinned to match the wasm-bindgen-cli shipped in nixpkgs (0.2.121): the CLI
+# Pinned to match the wasm-bindgen-cli shipped in nixpkgs (0.2.127): the CLI
 # and the crate's schema version must match exactly. Update all four together.
-wasm-bindgen = "=0.2.121"
-wasm-bindgen-futures = "=0.4.71"
-js-sys = "=0.3.98"
+wasm-bindgen = "=0.2.127"
+wasm-bindgen-futures = "=0.4.77"
+js-sys = "=0.3.104"
 
 [profile.release]
 lto = true
